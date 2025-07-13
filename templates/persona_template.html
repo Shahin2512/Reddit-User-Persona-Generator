@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: sans-serif; padding: 40px; color: #222; }
+        .header { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
+        .section { margin-top: 25px; }
+        .bar { height: 10px; background-color: orange; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <div class="header">Reddit User Persona: {{ name }}</div>
+    <p><strong>Archetype:</strong> {{ archetype }}</p>
+    <p><strong>Quote:</strong> “{{ quote }}”</p>
+
+    <div class="section">
+        <h3>Motivations</h3>
+        {% for key, value in motivations.items() %}
+            <p>{{ key.title() }}</p>
+            <div class="bar" style="width:{{ value }}%"></div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h3>Personality</h3>
+        <p>Introvert vs Extrovert: {{ personality.introvert }}/100</p>
+        <p>Intuition: {{ personality.intuition }}</p>
+        <p>Thinking: {{ personality.thinking }}</p>
+        <p>Judging: {{ personality.judging }}</p>
+    </div>
+
+    <div class="section">
+        <h3>Goals & Needs</h3>
+        <ul>{% for goal in goals %}<li>{{ goal }}</li>{% endfor %}</ul>
+    </div>
+
+    <div class="section">
+        <h3>Frustrations</h3>
+        <ul>{% for f in frustrations %}<li>{{ f }}</li>{% endfor %}</ul>
+    </div>
+
+    <div class="section">
+        <h3>Behavior & Habits</h3>
+        <ul>{% for h in habits %}<li>{{ h }}</li>{% endfor %}</ul>
+    </div>
+
+    <div class="section">
+        <h3>Top Subreddits</h3>
+        <ul>{% for sub, count in subreddits %}<li>r/{{ sub }} ({{ count }} mentions)</li>{% endfor %}</ul>
+    </div>
+
+    <div class="section">
+        <h3>Frequently Discussed Topics</h3>
+        <p>{{ topics|join(', ') }}</p>
+    </div>
+</body>
+</html>
